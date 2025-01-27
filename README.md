@@ -2,7 +2,7 @@
 
 ## Requisiti del sistema
 
-Il sistema offre una piattaforma intuitiva per la gestione di utenti, progetti e ore lavorative, con funzionalità personalizzate per i diversi ruoli:
+Il sistema offre una piattaforma per la gestione di utenti, progetti e ore lavorative, con funzionalità personalizzate per i diversi ruoli:
 
 ## Permessi
 
@@ -168,7 +168,7 @@ Per garantire che il sistema funzioni correttamente, sono stati implementati due
 
 ![Coverage Totale](images/TotalCoverage.PNG)
 
-# Inizializzazione del Sistema
+## Inizializzazione del Sistema
 
 Per eseguire le fasi di test, il sistema è stato inizializzato con un insieme di utenti predefiniti appartenenti a diversi ruoli. Alcune credenziali di accesso predefinite per i vari utenti sono le seguenti:
 
@@ -202,7 +202,7 @@ Il sistema è stato popolato con alcuni progetti di esempio, ciascuno con un sup
    - **Supervisore**: `supervisor2`
    - **Ricercatori**: `researcher2`, `researcher4`, `researcher`
 
-### Conclusioni
+## Conclusioni
 
 - Il sistema presenta un'ottima copertura per i **controller** e **modelli**, con una copertura quasi totale per le **pages** (scenari di test). Questo indica che le funzioni principali sono testate in modo rigoroso.
 - Sono stati identificati alcuni punti di miglioramento nella copertura dei **metodi** in **ServingWebContentApplication**, dove il testing potrebbe essere esteso per garantire una maggiore robustezza.
@@ -210,4 +210,7 @@ Il sistema è stato popolato con alcuni progetti di esempio, ciascuno con un sup
 
 I test di **Acceptance** garantiscono che i flussi utente siano corretti, mentre i **Unit Test** assicurano la correttezza del codice backend.
 
+## Autori
+Bazzotti Edoardo VR518747
+Xiao Simone VR519027
 
