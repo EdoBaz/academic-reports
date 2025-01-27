@@ -211,6 +211,7 @@ Il sistema è stato popolato con alcuni progetti di esempio, ciascuno con un sup
 I test di **Acceptance** garantiscono che i flussi utente siano corretti, mentre i **Unit Test** assicurano la correttezza del codice backend.
 
 ## Autori
-Bazzotti Edoardo VR518747
-Xiao Simone VR519027
+
+- Bazzotti Edoardo VR518747
+- Xiao Simone VR519027
 
