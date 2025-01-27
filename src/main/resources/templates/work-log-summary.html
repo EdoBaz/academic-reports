@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riepilogo Ore</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      text-align: center;
+      padding: 8px;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .signature-section {
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    .signature-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .signature-box {
+      width: 45%;
+      text-align: center;
+    }
+    .signature-box p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+<h1>Riepilogo Ore</h1>
+
+<!-- Messaggio di errore -->
+<div>
+  <p style="color: red;">
+    <strong th:if="${error}" th:text="${error}"></strong>
+  </p>
+</div>
+
+<!-- Form per la selezione -->
+<form th:action="@{/worklogs/summary}" method="get">
+  <label for="projectId">Progetto:</label>
+  <select id="projectId" name="projectId" required>
+    <option value="" disabled selected>Seleziona un progetto</option>
+    <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.name}"></option>
+  </select>
+
+  <label for="month">Mese:</label>
+  <select id="month" name="month" required>
+    <option value="" disabled selected>Seleziona un mese</option>
+    <option th:each="m : ${#numbers.sequence(1, 12)}" th:value="${m}" th:text="${#temporals.create(2023, m, 1).month.name()}"></option>
+  </select>
+
+  <label for="year">Anno:</label>
+  <select id="year" name="year" required>
+    <option value="" disabled selected>Seleziona un anno</option>
+    <option th:each="y : ${#numbers.sequence(2020, 2030)}" th:value="${y}" th:text="${y}"></option>
+  </select>
+
+  <button type="submit">Visualizza Riepilogo</button>
+  <button type="button" class="btn cancel-btn" onclick="window.location.href='/home';">Indietro</button>
+</form>
+
+<!-- Tabella -->
+<div th:if="${days != null}">
+  <h2 th:text="'Progetto: ' + ${project.name} + ' (Agency: ' + ${project.fundingAgency} + ') - ' + ${currentMonth} + '/' + ${currentYear}"></h2>
+  <table id="summary-table">
+    <thead>
+    <tr>
+      <th>Progetto</th>
+      <th th:each="day : ${days}" th:text="${#temporals.format(day.date, 'EEE d')}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td th:text="${project.name}"></td>
+      <td th:each="day : ${days}" th:text="${day.hours}"></td>
+    </tr>
+    <tr>
+      <td>Funding Agency: <span th:text="${project.fundingAgency}"></span></td>
+      <td th:each="day : ${days}" th:text="${otherHoursByDay[day.date]}"></td>
+    </tr>
+    <tr>
+      <td>Non Funding Agency: <span th:text="${project.fundingAgency}"></span></td>
+      <td th:each="day : ${days}" th:text="${differentAgencyHoursByDay[day.date]}"></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td>Totale</td>
+      <td th:each="day : ${days}" th:text="${day.hours + otherHoursByDay[day.date] + differentAgencyHoursByDay[day.date]}"></td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- Sezione Firma -->
+<div th:if="${days != null}" class="signature-section">
+  <div class="signature-row">
+    <div class="signature-box">
+      <p>Firmato da:</p>
+      <p>Data: <span th:text="${currentDate}"></span></p>
+      <p>Firma:</p>
+    </div>
+    <div class="signature-box">
+      <p>Firmato dal Supervisor:</p>
+      <p>Data: <span th:text="${currentDate}"></span></p>
+      <p>Firma:</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

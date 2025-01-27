@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserimento Ore</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        input[type="number"] { width: 60px; text-align: center; }
+        .disabled { background-color: #f9f9f9; color: #ccc; pointer-events: none; }
+        .navigation { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .navigation button { padding: 5px 10px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        .navigation button:disabled { background-color: #ccc; }
+    </style>
+</head>
+<body>
+
+<div class="navigation">
+    <a th:href="@{/worklogs/add(id=${project.id}, month=${previousMonth}, year=${previousYear})}">
+        <button>&lt; Mese Precedente</button>
+    </a>
+    <h2 th:text="${#temporals.format(#temporals.create(currentYear, currentMonth, 1), 'MMMM yyyy', locale)}"></h2>
+    <a th:href="@{/worklogs/add(id=${project.id}, month=${nextMonth}, year=${nextYear})}">
+        <button>&gt; Mese Successivo</button>
+    </a>
+</div>
+
+
+<div th:if="${error}" class="alert alert-danger">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:action="@{/worklogs/add}" method="post">
+    <button type="submit">Salva</button>
+    <button type="button" class="btn cancel-btn" onclick="window.location.href='/home';">Indietro</button>
+    <input type="hidden" name="projectId" th:value="${project.id}">
+    <table>
+        <thead>
+        <tr>
+            <th>Giorno</th>
+            <th>Ore Lavorate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="day : ${days}">
+            <td th:text="${day.date}"></td>
+            <td>
+                <input type="number" name="hours" th:value="${day.hours}" min="0" max="8"
+                       th:disabled="${day.isHoliday || day.date > today}">
+                <input type="hidden" name="days" th:value="${day.date}"
+                       th:disabled="${day.isHoliday || day.date > today}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</form>
+
+
+
+</body>
+</html>

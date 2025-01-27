@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="demo.unitTests.PersonTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2025-01-27T11:03:44" hostname="DESKTOP-TUNA" time="0.003">
+  <properties/>
+  <testcase name="testParameterizedConstructor" classname="demo.unitTests.PersonTest" time="0.002"/>
+  <testcase name="testSetAndGetName" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testSetAndGetRole" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testMinimalConstructor" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testSetAndGetUsername" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testSetAndGetCF" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testSetAndGetId" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testSetAndGetSurname" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testSetAndGetPassword" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <testcase name="testDefaultConstructor" classname="demo.unitTests.PersonTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

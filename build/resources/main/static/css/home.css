@@ -1,0 +1,77 @@
+/* Correzioni per la pagina Home */
+header {
+  background-color: #333;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 40px; /* Spazio extra sotto l'header */
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+h1 span {
+  font-weight: bold;
+  color: #ffcc00; /* Colore che rende più visibile la scritta */
+}
+
+.projects {
+  margin-top: 20px;
+}
+
+.table-wrapper {
+  margin-top: 20px;
+  overflow-x: auto; /* Aggiunge lo scroll orizzontale se la tabella è larga */
+}
+
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.admin-section, .supervisor-section, .researcher-section {
+  margin-top: 30px;
+}
+
+.btn {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.admin-buttons {
+  display: flex;
+  gap: 15px; /* Disposizione orizzontale con spazio tra i bottoni */
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Modifiche per separare meglio i bottoni */
+section {
+  margin-bottom: 20px;
+}

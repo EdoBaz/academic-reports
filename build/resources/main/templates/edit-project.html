@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifica Progetto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .cancel-btn {
+      background-color: #6c757d;
+      text-decoration: none;
+      color: white;
+      display: inline-block;
+      text-align: center;
+    }
+    .cancel-btn:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Modifica il tuo Progetto</h1>
+    <p>Rendiamo il tuo progetto ancora migliore!</p>
+  </header>
+
+  <form th:action="@{/project/edit}" method="post">
+    <input type="hidden" name="id" th:value="${project.id}" />
+
+    <div class="form-group">
+      <label for="name">Nome del Progetto:</label>
+      <input type="text" id="name" name="name" th:value="${project.name}" required placeholder="Inserisci il nome del progetto" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descrizione del Progetto:</label>
+      <textarea id="description" name="description" required th:text="${project.description}" placeholder="Descrivi il progetto"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="supervisor">Supervisore:</label>
+      <select id="supervisor" name="supervisorId" required>
+        <option value="" disabled selected>Seleziona un supervisore</option>
+        <option th:each="person : ${supervisors}" th:value="${person.id}"
+                th:text="${person.name}"
+                th:selected="${person.id == project.supervisor.id}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="researchers">Ricercatori:</label>
+      <select id="researchers" name="researcherIds" multiple>
+        <option th:each="person : ${researchers}" th:value="${person.id}"
+                th:text="${person.name}"
+                th:checked="${project.researchers.contains(person)}"></option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn">Salva</button>
+      <a href="/home" class="btn cancel-btn">Annulla</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Benvenuto, <span th:text="${user.name} + ' ' + ${user.surname}"></span>!</h1>
+    <p>Ruolo: <span th:text="${userRole}"></span></p>
+    <div class="logout">
+      <a th:href="@{/logout}">
+        <button class="btn">Logout</button>
+      </a>
+    </div>
+  </header>
+
+  <div th:if="${error}" class="alert alert-danger">
+    <p th:text="${error}"></p>
+  </div>
+
+  <!-- Tabella dei progetti -->
+  <section class="projects">
+    <h2>Lista Progetti</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nome Progetto</th>
+        <th>Supervisor</th>
+        <th>Visualizza</th>
+        <th th:if="${userRole.equals('ADMINISTRATOR') or userRole.equals('SUPERVISOR')}">Modifica</th>
+        <th th:if="${userRole.equals('ADMINISTRATOR')}">Elimina</th>
+        <th th:if="${userRole.equals('RESEARCHER')}">Aggiungi Ora</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Messaggio se non ci sono progetti -->
+      <tr th:if="${projects.isEmpty()}">
+        <td colspan="7">Non ci sono progetti disponibili.</td>
+      </tr>
+      <!-- Progetti -->
+      <tr th:each="project : ${projects}">
+        <td th:text="${project.id}"></td>
+        <td th:text="${project.name}"></td>
+        <td th:text="${project.supervisor.name}"></td>
+        <td>
+          <a th:href="@{/project/show(id=${project.id})}" class="btn-link">Visualizza</a>
+        </td>
+        <td th:if="${userRole.equals('ADMINISTRATOR') or userRole.equals('SUPERVISOR')}">
+          <a th:href="@{/project/edit(id=${project.id})}" class="btn-link">Modifica</a>
+        </td>
+        <td th:if="${userRole.equals('ADMINISTRATOR')}">
+          <a th:href="@{/project/delete(id=${project.id})}" onclick="return confirm('Sei sicuro di voler eliminare questo progetto?');" class="btn-link">Elimina</a>
+        </td>
+        <td th:if="${userRole.equals('RESEARCHER')}">
+          <a th:href="@{/worklogs/add(id=${project.id})}" class="btn-link">Aggiungi Ora</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Sezioni specifiche per ruolo -->
+  <section th:if="${userRole.equals('ADMINISTRATOR')}" class="admin-section">
+    <div class="admin-buttons">
+      <a th:href="@{/create-project}">
+        <button class="btn">Crea Progetto</button>
+      </a>
+      <a th:href="@{/register}">
+        <button class="btn">Inserisci Utente</button>
+      </a>
+    </div>
+  </section>
+
+  <section th:if="${userRole.equals('SUPERVISOR')}" class="supervisor-section">
+    <h3>Gestione Progetti</h3>
+    <a th:href="@{/create-project}">
+      <button class="btn">Crea Progetto</button>
+    </a>
+  </section>
+
+  <section>
+    <a th:href="@{/change-password}">
+      <button class="btn">Cambia Password</button>
+    </a>
+  </section>
+
+  <section th:if="${userRole.equals('RESEARCHER')}" class="researcher-section">
+
+    <a th:href="@{/worklogs/summary}">
+      <button class="btn">Riepilogo</button>
+    </a>
+  </section>
+</div>
+</body>
+</html>

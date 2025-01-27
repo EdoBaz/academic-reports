@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina di Registrazione</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="center-container">
+    <h1>Modulo di Registrazione</h1>
+    <form action="/register" method="POST" class="form-container">
+        <div class="form-group">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Cognome:</label>
+            <input type="text" id="surname" name="surname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cf">Codice Fiscale:</label>
+            <input type="text" id="cf" name="CF" required pattern="^[A-Za-z0-9]+$" title="Il codice fiscale può contenere solo lettere e numeri.">
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required minlength="5" maxlength="20" title="Username deve essere tra 5 e 20 caratteri.">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="5" maxlength="20" title="La password deve essere lunga tra 5 e 20 caratteri.">
+        </div>
+
+        <div class="form-group">
+            <label for="role">Ruolo:</label>
+            <select id="role" name="role" required>
+                <option value="RESEARCHER">Ricercatore</option>
+                <option value="SUPERVISOR">Supervisore</option>
+                <option value="ADMINISTRATOR">Amministratore</option>
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Registrati</button>
+            <button type="button" class="btn cancel-btn" onclick="window.location.href='/home';">Indietro</button>
+        </div>
+    </form>
+
+    <!-- Messaggi -->
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+    </div>
+</div>
+</body>
+</html>

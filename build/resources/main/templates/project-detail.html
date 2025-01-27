@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dettaglio Progetto</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Dettaglio Progetto</h1>
+  <p><strong>Id:</strong> <span th:text="${project.id}"></span></p>
+  <p><strong>Nome:</strong> <span th:text="${project.name}"></span></p>
+  <p><strong>Descrizione:</strong> <span th:text="${project.description}"></span></p>
+  <p><strong>Supervisore:</strong> <span th:text="${project.supervisor.name}"></span></p>
+  <p><strong>Ricercatori:</strong></p>
+  <ul>
+    <li th:each="researcher : ${project.researchers}" th:text="${researcher.name}"></li>
+  </ul>
+  <div class="form-actions">
+    <button type="button" class="btn cancel-btn" onclick="window.location.href='/home';">Torna alla Home</button>
+  </div>
+</div>
+</body>
+</html>

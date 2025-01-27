@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="demo.unitTests.WorkLogTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-01-27T11:03:44" hostname="DESKTOP-TUNA" time="0.001">
+  <properties/>
+  <testcase name="testSetAndGetProject" classname="demo.unitTests.WorkLogTest" time="0.0"/>
+  <testcase name="testSetAndGetDate" classname="demo.unitTests.WorkLogTest" time="0.0"/>
+  <testcase name="testSetAndGetResearcher" classname="demo.unitTests.WorkLogTest" time="0.0"/>
+  <testcase name="testSetAndGetHours" classname="demo.unitTests.WorkLogTest" time="0.0"/>
+  <testcase name="testConstructor" classname="demo.unitTests.WorkLogTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

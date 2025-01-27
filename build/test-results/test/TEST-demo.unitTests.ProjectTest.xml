@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="demo.unitTests.ProjectTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-01-27T11:03:44" hostname="DESKTOP-TUNA" time="0.004">
+  <properties/>
+  <testcase name="testSetAndGetDescription" classname="demo.unitTests.ProjectTest" time="0.0"/>
+  <testcase name="testSetAndGetName" classname="demo.unitTests.ProjectTest" time="0.001"/>
+  <testcase name="testSetAndGetYear" classname="demo.unitTests.ProjectTest" time="0.0"/>
+  <testcase name="testSetAndGetMonth" classname="demo.unitTests.ProjectTest" time="0.0"/>
+  <testcase name="testSetAndGetSupervisor" classname="demo.unitTests.ProjectTest" time="0.0"/>
+  <testcase name="testSetAndGetResearchers" classname="demo.unitTests.ProjectTest" time="0.0"/>
+  <testcase name="testSetAndGetWorkLogs" classname="demo.unitTests.ProjectTest" time="0.002"/>
+  <testcase name="testSetAndGetFundingAgency" classname="demo.unitTests.ProjectTest" time="0.0"/>
+  <testcase name="testConstructor" classname="demo.unitTests.ProjectTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

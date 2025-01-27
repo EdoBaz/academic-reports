@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crea Nuovo Progetto</title>
+  <style>
+    /* Aggiungi lo stile per il messaggio di errore */
+    .error-message {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Crea un Nuovo Progetto</h1>
+
+  <!-- Messaggio di errore -->
+  <div th:if="${error}" class="error-message">
+    <p th:text="${error}"></p>
+  </div>
+
+  <!-- Form per la creazione di un nuovo progetto -->
+  <form action="/create-project" method="POST">
+    <!-- Campi del form (uguali a quelli precedenti) -->
+    <div class="form-group">
+      <label for="name">Nome Progetto:</label>
+      <input type="text" id="name" name="name" placeholder="Inserisci il nome del progetto" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descrizione del Progetto:</label>
+      <textarea id="description" name="description" placeholder="Inserisci la descrizione del progetto" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="fundingAgency">Agenzia di Finanziamento:</label>
+      <input type="text" id="fundingAgency" name="fundingAgency" placeholder="Inserisci l'agenzia di finanziamento" required>
+    </div>
+
+    <div class="form-group">
+      <label for="month">Mese di Inizio:</label>
+      <select id="month" name="month" required>
+        <option value="" disabled selected>Seleziona un mese</option>
+        <option value="1">Gennaio</option>
+        <option value="2">Febbraio</option>
+        <option value="3">Marzo</option>
+        <option value="4">Aprile</option>
+        <option value="5">Maggio</option>
+        <option value="6">Giugno</option>
+        <option value="7">Luglio</option>
+        <option value="8">Agosto</option>
+        <option value="9">Settembre</option>
+        <option value="10">Ottobre</option>
+        <option value="11">Novembre</option>
+        <option value="12">Dicembre</option>
+      </select>
+    </div>
+
+    <!-- Anno di Inizio come dropdown -->
+    <div class="form-group">
+      <label for="year">Anno di Inizio:</label>
+      <select id="year" name="year" required>
+        <option value="" disabled selected>Seleziona un anno</option>
+        <!-- Genera gli anni da 2020 a 2030 -->
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="supervisorId">Supervisore:</label>
+      <select id="supervisorId" name="supervisorId" required>
+        <option value="" disabled selected>Seleziona un supervisore</option>
+        <th:block th:each="person : ${supervisors}">
+          <option th:value="${person.id}" th:text="${person.name}"></option>
+        </th:block>
+      </select>
+    </div>
+
+    <div class="form-group multiple">
+      <label for="researcherIds">Ricercatori:</label>
+      <select id="researcherIds" name="researcherIds" multiple required>
+        <th:block th:each="person : ${researchers}">
+          <option th:value="${person.id}" th:text="${person.name}"></option>
+        </th:block>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">Crea Progetto</button>
+    </div>
+  </form>
+
+  <div class="form-actions">
+    <button type="button" class="back-button" onclick="window.history.back();">Indietro</button>
+  </div>
+
+</div>
+
+</body>
+</html>
