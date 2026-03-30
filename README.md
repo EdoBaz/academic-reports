@@ -1,216 +1,216 @@
-# Sistema di Gestione dei Report Accademici
+# Academic Reports Management System
 
-## Requisiti del sistema
+## System Requirements
 
-Il sistema offre una piattaforma per la gestione di utenti, progetti e ore lavorative, con funzionalità personalizzate per i diversi ruoli:
+The system provides a platform for managing users, projects, and work hours, with customized functionalities for different roles:
 
-## Permessi
+## Permissions
 
-### Amministratore:
-- Creazione di nuovi progetti.
-- Visualizzazione e gestione della lista dei progetti.
-- Modifica e rimozione dei progetti esistenti.
-- Inserimento di nuovi utenti nel sistema.
+### Administrator:
+- Creation of new projects.
+- Viewing and managing the project list.
+- Editing and removing existing projects.
+- Adding new users to the system.
 
-### Responsabile Scientifico (Supervisore):
-- Creazione di progetti.
-- Modifica dei progetti di cui è responsabile.
+### Scientific Supervisor:
+- Creation of projects.
+- Editing projects under their supervision.
 
-### Ricercatore:
-- Registrazione delle presenze e delle ore lavorative sui progetti assegnati.
-- Visualizzazione riepilogativa in base al progetto e al periodo mensile
+### Researcher:
+- Recording attendance and work hours on assigned projects.
+- Viewing summaries by project and monthly period.
 
-## Scenari
+## Scenarios
 
-### 1. Inserimento di un utente da parte dell'amministratore
+### 1. User Registration by Administrator
 
-**Assunzione iniziale:** Un amministratore autenticato desidera inserire un nuovo utente nel sistema. L'amministratore ha accesso alle credenziali iniziali del nuovo utente (ad esempio nome, cognome, email, ruolo).
+**Initial Assumption:** An authenticated administrator wants to add a new user to the system. The administrator has access to the new user's initial credentials (e.g., name, surname, email, role).
 
-**Normale:** L'amministratore accede all'interfaccia di gestione utenti e seleziona l'opzione "Inserisci utente". Compila i campi richiesti (nome, cognome, ruolo) e conferma l'operazione.
+**Normal Flow:** The administrator accesses the user management interface and selects the "Add User" option. They fill in the required fields (name, surname, role) and confirm the operation.
 
-**Cosa può andare storto:**
+**What Can Go Wrong:**
 
-1. L'utente con lo stesso username esiste già: il sistema notifica che l'utente non può essere duplicato.
+1. A user with the same username already exists: the system notifies that the user cannot be duplicated.
 
-**Stato del sistema al completamento:** L'utente viene aggiunto al database e lo stato del sistema conferma l'avvenuta creazione dell'account.
-
----
-
-### 2. Cambiamento della propria password
-
-**Assunzione iniziale:** Un utente autenticato desidera cambiare la propria password per motivi di sicurezza.
-
-**Normale:** L'utente seleziona l'opzione "Cambia password", inserisce la password attuale, digita e conferma la nuova password.
-
-**Cosa può andare storto:**
-
-1. La password attuale non corrisponde: il sistema mostra un messaggio di errore.
-
-**Stato del sistema al completamento:** La nuova password è salvata.
+**System State at Completion:** The user is added to the database and the system confirms the successful account creation.
 
 ---
 
-### 3. Creazione di un progetto
+### 2. Password Change
 
-**Assunzione iniziale:** Un amministratore desidera creare un nuovo progetto a cui assegnare utenti.
+**Initial Assumption:** An authenticated user wants to change their password for security reasons.
 
-**Normale:** L'amministratore seleziona "Crea nuovo progetto", inserisce nome, descrizione, data di inizio. Aggiunge supervisore e ricercatori al progetto e conferma. Il sistema salva il progetto.
+**Normal Flow:** The user selects the "Change Password" option, enters their current password, types and confirms the new password.
 
-**Cosa può andare storto:**
+**What Can Go Wrong:**
 
-1. Nessun utente assegnato: il sistema avvisa che il progetto non può essere creato senza membri.
+1. The current password does not match: the system displays an error message.
 
-**Altre attività:** Il progetto può essere modificato dal supervisore e dagli amministratori.
-
-**Stato del sistema al completamento:** Il progetto è creato e disponibile nella lista dei progetti.
+**System State at Completion:** The new password is saved.
 
 ---
 
-### 4. Modifica di un progetto
+### 3. Project Creation
 
-**Assunzione iniziale:** Un amministratore o supervisore desidera aggiornare le informazioni di un progetto esistente.
+**Initial Assumption:** An administrator wants to create a new project and assign users to it.
 
-**Normale:** L'amministratore accede alla lista dei progetti, seleziona "Modifica" sul progetto da modificare, aggiorna le informazioni desiderate (nome, descrizione, membri) e salva le modifiche.
+**Normal Flow:** The administrator selects "Create New Project", enters the name, description, and start date. They add a supervisor and researchers to the project and confirm. The system saves the project.
 
-**Cosa può andare storto:**
+**What Can Go Wrong:**
 
-1. Nessun utente assegnato: il sistema avvisa che il progetto non può essere senza membri.
+1. No users assigned: the system warns that the project cannot be created without members.
 
-**Stato del sistema al completamento:** Le modifiche sono salvate e visibili a tutti gli utenti coinvolti.
+**Other Activities:** The project can be edited by the supervisor and administrators.
 
----
-
-### 5. Inserimento ore di lavoro da parte di un ricercatore
-
-**Assunzione iniziale:** Un ricercatore autenticato desidera registrare le ore di lavoro su un progetto.
-
-**Normale:** Il ricercatore accede alla sezione "Inserimento ore", seleziona il progetto e inserisce le ore lavorate nelle date desiderate (escluse festive e future), quindi conferma. Il sistema salva l'informazione e aggiorna il riepilogo delle ore lavorative.
-
-**Cosa può andare storto:**
-
-1. Ore lavorative superiori al massimo giornaliero consentito: il sistema restituisce un messaggio di errore.
-
-**Stato del sistema al completamento:** Le ore sono registrate e visibili nel riepilogo.
+**System State at Completion:** The project is created and available in the project list.
 
 ---
 
-### 6. Visualizzazione del riepilogo delle proprie ore lavorative per progetto, mese e anno
+### 4. Project Editing
 
-**Assunzione iniziale:** Un ricercatore autenticato desidera visualizzare un riepilogo delle ore lavorative.
+**Initial Assumption:** An administrator or supervisor wants to update information for an existing project.
 
-**Normale:** Il ricercatore accede alla sezione "Riepilogo", seleziona un progetto e un periodo (mese o anno). Il sistema mostra una tabella riepilogativa con ore totali e dettagliate.
+**Normal Flow:** The administrator accesses the project list, selects "Edit" on the project to modify, updates the desired information (name, description, members), and saves the changes.
 
-**Cosa può andare storto:**
+**What Can Go Wrong:**
 
-1. Nessun dato disponibile per il periodo selezionato: il sistema avvisa l'utente.
+1. No users assigned: the system warns that the project cannot exist without members.
 
-**Stato del sistema al completamento:** Il riepilogo è visualizzato o esportato correttamente.
-
----
-
-### 7. Eliminazione di un progetto
-
-**Assunzione iniziale:** Un amministratore desidera eliminare un progetto esistente.
-
-**Normale:** L'amministratore accede alla lista dei progetti, dopo aver visto i dettagli del progetto decide di eliminarlo. Il sistema richiede una conferma definitiva prima di procedere.
-
-**Stato del sistema al completamento:** Il progetto è eliminato e non compare più nella lista attiva dell'admin e delle altre persone coinvolte.
+**System State at Completion:** The changes are saved and visible to all involved users.
 
 ---
 
-### 8. Login, login con credenziali errate e logout
+### 5. Work Hours Entry by Researcher
 
-**Assunzione iniziale:** Un utente desidera accedere al proprio account e, successivamente, eseguire il logout.
+**Initial Assumption:** An authenticated researcher wants to record work hours on a project.
 
-**Normale:**
-1. L'utente inserisce il proprio username e la password corretta, quindi clicca su "Login".
-2. Se le credenziali sono corrette, l'utente viene autenticato e reindirizzato alla home page o alla dashboard.
-3. L'utente seleziona l'opzione "Logout" e conferma l'uscita.
+**Normal Flow:** The researcher accesses the "Enter Hours" section, selects the project, and enters the hours worked on the desired dates (excluding holidays and future dates), then confirms. The system saves the information and updates the work hours summary.
 
-**Cosa può andare storto:**
-1. Se l'utente inserisce credenziali errate (username o password sbagliati), il sistema mostra un messaggio di errore e invita a riprovare.
-2. Il sistema non riesce a eseguire il logout: viene mostrato un messaggio di errore e l'utente è invitato a riprovare.
+**What Can Go Wrong:**
 
-**Stato del sistema al completamento:**
-- Se il login è riuscito, l'utente è autenticato e reindirizzato alla home page o alla dashboard.
-- Se il logout è riuscito, l'utente è disconnesso e reindirizzato alla pagina di login o home page.
+1. Work hours exceed the daily maximum allowed: the system returns an error message.
+
+**System State at Completion:** The hours are recorded and visible in the summary.
+
+---
+
+### 6. Viewing Work Hours Summary by Project, Month, and Year
+
+**Initial Assumption:** An authenticated researcher wants to view a summary of their work hours.
+
+**Normal Flow:** The researcher accesses the "Summary" section, selects a project and a period (month or year). The system displays a summary table with total and detailed hours.
+
+**What Can Go Wrong:**
+
+1. No data available for the selected period: the system notifies the user.
+
+**System State at Completion:** The summary is displayed or exported correctly.
+
+---
+
+### 7. Project Deletion
+
+**Initial Assumption:** An administrator wants to delete an existing project.
+
+**Normal Flow:** The administrator accesses the project list, reviews the project details, and decides to delete it. The system requests final confirmation before proceeding.
+
+**System State at Completion:** The project is deleted and no longer appears in the admin's active list or for other involved users.
+
+---
+
+### 8. Login, Failed Login, and Logout
+
+**Initial Assumption:** A user wants to log into their account and subsequently log out.
+
+**Normal Flow:**
+1. The user enters their username and correct password, then clicks "Login".
+2. If the credentials are correct, the user is authenticated and redirected to the home page or dashboard.
+3. The user selects the "Logout" option and confirms the exit.
+
+**What Can Go Wrong:**
+1. If the user enters incorrect credentials (wrong username or password), the system displays an error message and prompts to retry.
+2. The system fails to execute logout: an error message is displayed and the user is prompted to retry.
+
+**System State at Completion:**
+- If login succeeds, the user is authenticated and redirected to the home page or dashboard.
+- If logout succeeds, the user is disconnected and redirected to the login page or home page.
 
 ## Quality Assurance
 
-Per garantire che il sistema funzioni correttamente, sono stati implementati due serie di testing distinti:
+To ensure the system works correctly, two distinct testing series have been implemented:
 
 1. **Acceptance Testing (Selenium + Page Object Model):**
-    - Utilizzato per testare gli scenari descritti nel sistema, come l'inserimento di un utente, la creazione di un progetto, l'inserimento delle ore di lavoro, ecc. Utilizzando il pattern **Page Object Model**, i test sono strutturati in modo modulare per garantire che ogni componente dell'interfaccia utente venga testato separatamente, riducendo il rischio di errori nel testing.
+    - Used to test the scenarios described in the system, such as user registration, project creation, work hours entry, etc. Using the **Page Object Model** pattern, tests are structured modularly to ensure each user interface component is tested separately, reducing the risk of testing errors.
       ![Coverage AcceptanceTests](images/AcceptanceTestsCoverage.PNG)
-    - Vengono testati gli scenari provenienti dal processo di ingegneria dei requisiti, rendendo il processo più efficace e in linea con le necessità reali degli utenti. Gli scenari sono **realistici**, riflettono casi d'uso effettivi, e includono **più requisiti**.
+    - Scenarios from the requirements engineering process are tested, making the process more effective and aligned with users' real needs. The scenarios are **realistic**, reflect actual use cases, and include **multiple requirements**.
 
 2. **Unit Testing (JUnit):**
-    - Testa le singole unità di codice dei model (Day,Person...) in modo indipendente. Questi test assicurano che ogni componente del sistema funzioni correttamente in isolamento, senza dipendenze da altre parti del sistema.
+    - Tests individual code units of the models (Day, Person...) independently. These tests ensure that each system component functions correctly in isolation, without dependencies on other parts of the system.
       ![Coverage unitTests](imageS/UnitTestsCoverage.PNG)
 
    **DayTest**
 
-   Testa il costruttore e i metodi getter/setter della classe `Day`, che rappresenta un giorno con una data, un numero di ore lavorative e l'indicazione se è un giorno festivo.
+   Tests the constructor and getter/setter methods of the `Day` class, which represents a day with a date, number of work hours, and indication of whether it is a holiday.
    
    **PersonTest**
 
-   Verifica i costruttori (predefinito, parametrico e minimo) e i metodi getter/setter della classe `Person`, che modella un utente con attributi come nome, cognome, codice fiscale, username, password e ruolo (`Role`).
+   Verifies the constructors (default, parametric, and minimal) and getter/setter methods of the `Person` class, which models a user with attributes such as name, surname, tax code, username, password, and role (`Role`).
 
    **ProjectTest**
 
-   Testa il costruttore e i metodi getter/setter della classe `Project`, che rappresenta un progetto con attributi come nome, descrizione, mese, anno, ente finanziatore, supervisore, ricercatori e registri di lavoro. I test includono la verifica della corretta impostazione e ottenimento di questi attributi e delle relative modifiche.
+   Tests the constructor and getter/setter methods of the `Project` class, which represents a project with attributes such as name, description, month, year, funding entity, supervisor, researchers, and work logs. Tests include verification of correct setting and retrieval of these attributes and their modifications.
 
    **WorkLogTest**
    
-   Testa il costruttore e i metodi getter/setter della classe `WorkLog`, che rappresenta un registro di lavoro associato a un ricercatore e a un progetto, con attributi come data, ore lavorate, ricercatore e progetto. I test verificano la corretta impostazione e ottenimento di questi attributi e le modifiche tramite i metodi setter.
+   Tests the constructor and getter/setter methods of the `WorkLog` class, which represents a work log associated with a researcher and a project, with attributes such as date, hours worked, researcher, and project. Tests verify the correct setting and retrieval of these attributes and modifications via setter methods.
 
-### Coverage Totale
+### Total Coverage
 
-![Coverage Totale](images/TotalCoverage.PNG)
+![Total Coverage](images/TotalCoverage.PNG)
 
-## Inizializzazione del Sistema
+## System Initialization
 
-Per eseguire le fasi di test, il sistema è stato inizializzato con un insieme di utenti predefiniti appartenenti a diversi ruoli. Alcune credenziali di accesso predefinite per i vari utenti sono le seguenti:
+To perform the testing phases, the system has been initialized with a set of predefined users belonging to different roles. Some default login credentials for the various users are as follows:
 
-- **Amministratore**:
+- **Administrator**:
    - Username: `admin`
    - Password: `admin`
 
-- **Supervisore**:
+- **Supervisor**:
    - Username: `supervisor`
    - Password: `supervisor`
 
-- **Ricercatore**:
+- **Researcher**:
    - Username: `researcher`
    - Password: `researcher`
 
-Il sistema è stato popolato con alcuni progetti di esempio, ciascuno con un supervisore assegnato e un gruppo di ricercatori dedicati.
+The system has been populated with some example projects, each with an assigned supervisor and a dedicated group of researchers.
 
 - **Project 1**: AI Research
-   - **Supervisore**: `supervisor`
-   - **Ricercatori**: `researcher1`, `researcher2`, `researcher`
+   - **Supervisor**: `supervisor`
+   - **Researchers**: `researcher1`, `researcher2`, `researcher`
 
 - **Project 2**: Space Exploration
-   - **Supervisore**: `supervisor2`
-   - **Ricercatori**: `researcher3`, `researcher4`, `researcher`
+   - **Supervisor**: `supervisor2`
+   - **Researchers**: `researcher3`, `researcher4`, `researcher`
 
 - **Project 3**: Renewable Energy Solutions
-   - **Supervisore**: `supervisor1`
-   - **Ricercatori**: `researcher1`, `researcher3`, `researcher`
+   - **Supervisor**: `supervisor1`
+   - **Researchers**: `researcher1`, `researcher3`, `researcher`
 
 - **Project 4**: Climate Change Analysis
-   - **Supervisore**: `supervisor2`
-   - **Ricercatori**: `researcher2`, `researcher4`, `researcher`
+   - **Supervisor**: `supervisor2`
+   - **Researchers**: `researcher2`, `researcher4`, `researcher`
 
-## Conclusioni
+## Conclusions
 
-- Il sistema presenta un'ottima copertura per i **controller** e **modelli**, con una copertura quasi totale per le **pages** (scenari di test). Questo indica che le funzioni principali sono testate in modo rigoroso.
-- Sono stati identificati alcuni punti di miglioramento nella copertura dei **metodi** in **ServingWebContentApplication**, dove il testing potrebbe essere esteso per garantire una maggiore robustezza.
-- La qualità del codice è mantenuta alta grazie a una solida implementazione di test a livello sia di unità che di accettazione.
+- The system shows excellent coverage for **controllers** and **models**, with almost total coverage for **pages** (test scenarios). This indicates that the main functions are rigorously tested.
+- Some improvement areas have been identified in the coverage of **methods** in **ServingWebContentApplication**, where testing could be extended to ensure greater robustness.
+- Code quality is kept high thanks to a solid implementation of tests at both unit and acceptance levels.
 
-I test di **Acceptance** garantiscono che i flussi utente siano corretti, mentre i **Unit Test** assicurano la correttezza del codice backend.
+**Acceptance** tests ensure user flows are correct, while **Unit Tests** ensure backend code correctness.
 
-## Autori
+## Authors
 
 - Bazzotti Edoardo VR518747
 - Xiao Simone VR519027
