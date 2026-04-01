@@ -212,6 +212,6 @@ The system has been populated with some example projects, each with an assigned 
 
 ## Authors
 
-- Bazzotti Edoardo VR518747
-- Xiao Simone VR519027
+- Bazzotti Edoardo
+- Xiao Simone
 
